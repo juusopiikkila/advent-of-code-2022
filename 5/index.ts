@@ -1,5 +1,5 @@
 import { strictEqual } from 'assert';
-import { chunk, max } from 'lodash';
+import { chunk } from 'lodash';
 import { getExampleInput, getInput } from '../utils';
 
 interface Instruction {
