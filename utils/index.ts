@@ -21,6 +21,10 @@ export async function getInput(day: string): Promise<string[]> {
     return readFileToArray(`${day}/input.txt`);
 }
 
+export async function getExampleInput(day: string): Promise<string[]> {
+    return readFileToArray(`${day}/example.txt`);
+}
+
 export function generateMap(width: number, height: number, fill: number): number[][] {
     const map = new Array(height);
 

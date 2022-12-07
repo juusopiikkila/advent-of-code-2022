@@ -1,6 +1,6 @@
 import { strictEqual } from 'assert';
 import { chunk, intersection } from 'lodash';
-import { getInput } from '../utils';
+import { getExampleInput, getInput } from '../utils';
 
 const priorityList = 'abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ';
 
@@ -43,14 +43,7 @@ function part2(data: string[]): number {
 
 async function main() {
     const data = await getInput(__dirname);
-    const testData = [
-        'vJrwpWtwJgWrhcsFMMfFFhFp',
-        'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL',
-        'PmmdzqPrVvPwwTWBwg',
-        'wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn',
-        'ttgJtRGJQctTZtZT',
-        'CrZsJsPPZsGzwwsLwLmpwMDw',
-    ];
+    const testData = await getExampleInput(__dirname);
 
     strictEqual(getItemPrioritiesInBothRugsacks(testData), 157);
 

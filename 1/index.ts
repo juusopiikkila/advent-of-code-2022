@@ -1,5 +1,5 @@
 import { strictEqual } from 'assert';
-import { readFileToArray } from '../utils';
+import { getExampleInput, getInput } from '../utils';
 
 function getCaloriesByElf(data: string[]): number[] {
     const arr: number[] = [];
@@ -42,33 +42,17 @@ function part2(data: string[]): number {
     return getTopElfsTotal(data);
 }
 
-try {
-    readFileToArray('./1/input.txt').then((data) => {
-        const testData = [
-            '1000',
-            '2000',
-            '3000',
-            '',
-            '4000',
-            '',
-            '5000',
-            '6000',
-            '',
-            '7000',
-            '8000',
-            '9000',
-            '',
-            '10000',
-        ];
+async function main() {
+    const data = await getInput(__dirname);
+    const testData = await getExampleInput(__dirname);
 
-        strictEqual(getLargestCaloryElfNumber(testData), 4);
+    strictEqual(getLargestCaloryElfNumber(testData), 4);
 
-        console.log('Part 1', part1(data));
+    console.log('Part 1', part1(data));
 
-        strictEqual(getTopElfsTotal(testData), 45000);
+    strictEqual(getTopElfsTotal(testData), 45000);
 
-        console.log('Part 2', part2(data));
-    });
-} catch (err) {
-    console.log(err);
+    console.log('Part 2', part2(data));
 }
+
+main();

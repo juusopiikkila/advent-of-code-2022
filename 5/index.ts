@@ -1,6 +1,6 @@
 import { strictEqual } from 'assert';
 import { chunk, max } from 'lodash';
-import { getInput } from '../utils';
+import { getExampleInput, getInput } from '../utils';
 
 interface Instruction {
     amount: number
@@ -92,17 +92,7 @@ function part2(data: string[]): string {
 
 async function main() {
     const data = await getInput(__dirname);
-    const testData = [
-        '    [D]    ',
-        '[N] [C]    ',
-        '[Z] [M] [P]',
-        ' 1   2   3 ',
-        '',
-        'move 1 from 2 to 1',
-        'move 3 from 1 to 3',
-        'move 2 from 2 to 1',
-        'move 1 from 1 to 2',
-    ];
+    const testData = await getExampleInput(__dirname);
 
     strictEqual((new Crane(testData)).getTopCrates(), 'CMZ');
 

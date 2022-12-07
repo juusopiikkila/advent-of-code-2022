@@ -1,5 +1,5 @@
 import { strictEqual } from 'assert';
-import { getInput } from '../utils';
+import { getExampleInput, getInput } from '../utils';
 
 type ItemName = 'rock' | 'paper' | 'scissors';
 
@@ -103,11 +103,7 @@ function part2(data: string[]): number {
 
 async function main() {
     const data = await getInput(__dirname);
-    const testData = [
-        'A Y',
-        'B X',
-        'C Z',
-    ];
+    const testData = await getExampleInput(__dirname);
 
     strictEqual(getScoreWithAnswers(testData), 15);
 
