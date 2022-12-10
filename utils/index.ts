@@ -21,11 +21,15 @@ export async function getInput(day: string): Promise<string[]> {
     return readFileToArray(`${day}/input.txt`);
 }
 
-export async function getExampleInput(day: string): Promise<string[]> {
-    return readFileToArray(`${day}/example.txt`);
+export async function getExampleInput(day: string, number?: number): Promise<string[]> {
+    return readFileToArray(`${day}/example${number || ''}.txt`);
 }
 
-export function generateMap(width: number, height: number, fill: number): number[][] {
+export function generateMap<T = string | number>(
+    width: number,
+    height: number,
+    fill: T,
+): T[][] {
     const map = new Array(height);
 
     for (let i = 0; i < height; i += 1) {
