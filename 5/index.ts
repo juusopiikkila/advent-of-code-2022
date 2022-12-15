@@ -29,12 +29,12 @@ class Crane {
         this.stacks = Array.from({ length: maxLength || 0 })
             .map((stack, index) => (
                 state.map((row) => row[index] || '')
-                    .filter((crate) => crate.length !== 0)
+                    .filter((crate) => crate.length > 0)
                     .reverse()
             ));
 
         this.instructions = data.slice(data.findIndex((row) => row.length === 0) + 1).map((row) => {
-            const matches = row.match(/^move ([0-9]+) from ([0-9]+) to ([0-9]+)$/);
+            const matches = row.match(/^move (\d+) from (\d+) to (\d+)$/);
 
             if (!matches) {
                 throw new Error('No matches');
@@ -51,7 +51,7 @@ class Crane {
     private runInstructions(oldModel = true) {
         for (const instruction of this.instructions) {
             if (oldModel) {
-                for (let i = 0; i < instruction.amount; i += 1) {
+                for (let index = 0; index < instruction.amount; index += 1) {
                     const crate = this.stacks[instruction.from].pop();
 
                     if (!crate) {

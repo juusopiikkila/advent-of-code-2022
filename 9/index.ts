@@ -76,8 +76,8 @@ class Rope {
     constructor(data: string[], knots = 1) {
         this.parseData(data);
 
-        for (let i = 0; i < knots; i += 1) {
-            this.knots.push(new Knot(i === 0 ? this : this.knots[i - 1]));
+        for (let index = 0; index < knots; index += 1) {
+            this.knots.push(new Knot(index === 0 ? this : this.knots[index - 1]));
         }
     }
 
@@ -94,20 +94,24 @@ class Rope {
 
     private processInstructions() {
         for (const instruction of this.instructions) {
-            for (let i = 0; i < instruction.distance; i += 1) {
+            for (let index = 0; index < instruction.distance; index += 1) {
                 switch (instruction.direction) {
-                    case 'U':
+                    case 'U': {
                         this.coordinates.y -= 1;
                         break;
-                    case 'R':
+                    }
+                    case 'R': {
                         this.coordinates.x += 1;
                         break;
-                    case 'D':
+                    }
+                    case 'D': {
                         this.coordinates.y += 1;
                         break;
-                    case 'L':
+                    }
+                    case 'L': {
                         this.coordinates.x -= 1;
                         break;
+                    }
                     default:
                 }
 

@@ -8,8 +8,10 @@ function getItemPrioritiesInBothRugsacks(data: string[]): number {
     let itemList: string[] = [];
 
     for (const row of data) {
-        const compartment1 = row.slice(0, row.length / 2).split('');
-        const compartment2 = row.slice(row.length / 2).split('');
+        // eslint-disable-next-line unicorn/no-useless-spread
+        const compartment1 = [...row.slice(0, row.length / 2)];
+        // eslint-disable-next-line unicorn/no-useless-spread
+        const compartment2 = [...row.slice(row.length / 2)];
 
         itemList = [
             ...itemList,
@@ -26,7 +28,7 @@ function getGroupPriorities(data: string[]): number {
     for (const rows of chunk(data, 3)) {
         itemList = [
             ...itemList,
-            ...intersection(...rows.map((row) => row.split(''))),
+            ...intersection(...rows.map((row) => [...row])),
         ];
     }
 

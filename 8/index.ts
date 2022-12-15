@@ -22,7 +22,7 @@ function getColumn(grid: number[][], x: number, y: number, reverse = true): [num
 }
 
 function getVisibleTreeCount(data: string[]): number {
-    const grid = data.map((row) => row.split('').map(Number));
+    const grid = data.map((row) => [...row].map(Number));
     let count = (grid.length * 2) + ((grid[0].length - 2) * 2);
 
     for (let y = 1; y < grid.length - 1; y += 1) {
@@ -44,7 +44,7 @@ function getVisibleTreeCount(data: string[]): number {
 }
 
 function getHighestScenicScore(data: string[]): number {
-    const grid = data.map((row) => row.split('').map(Number));
+    const grid = data.map((row) => [...row].map(Number));
     let highestScore = 0;
 
     for (let y = 1; y < grid.length - 1; y += 1) {

@@ -3,11 +3,11 @@ import { uniq } from 'lodash';
 import { getInput } from '../utils';
 
 function getFirstMarker(data: string, length: number): number {
-    for (let i = length; i < data.length; i += 1) {
-        const marker = data.slice(i - length, i);
+    for (let index = length; index < data.length; index += 1) {
+        const marker = data.slice(index - length, index);
 
         if (uniq(marker).length === length) {
-            return i;
+            return index;
         }
     }
 

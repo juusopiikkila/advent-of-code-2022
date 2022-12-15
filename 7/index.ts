@@ -48,31 +48,31 @@ function getFiles(data: string[]): File[] {
 function getDirectories(files: File[]): Directory[] {
     return files
         .reduce<string[]>((directories, file) => {
-            const parts = file.path.split('/');
+        const parts = file.path.split('/');
 
-            for (let i = 0; i < parts.length; i += 1) {
-                const path = parts.slice(0, i).join('/');
+        for (let index = 0; index < parts.length; index += 1) {
+            const path = parts.slice(0, index).join('/');
 
-                if (!directories.includes(path)) {
-                    directories.push(path);
-                }
+            if (!directories.includes(path)) {
+                directories.push(path);
             }
+        }
 
-            return directories;
-        }, [])
+        return directories;
+    }, [])
         .map<Directory>((path) => ({
-            path,
-            size: files
-                .filter((item) => item.path.indexOf(path) === 0)
-                .reduce((accumulator, item) => accumulator + item.size, 0),
-        }));
+        path,
+        size: files
+            .filter((item) => item.path.indexOf(path) === 0)
+            .reduce((accumulator, item) => accumulator + item.size, 0),
+    }));
 }
 
 function getSize(data: string[]): number {
     const files = getFiles(data);
 
     return getDirectories(files)
-        .filter((directory) => directory.size <= 100000)
+        .filter((directory) => directory.size <= 100_000)
         .reduce((accumulator, directory) => accumulator + directory.size, 0);
 }
 
@@ -85,8 +85,8 @@ function getSizeOfDeletedDirectory(data: string[]): number {
         throw new Error('Root dir not found');
     }
 
-    const usedSpace = 70000000 - rootDirectory.size;
-    const neededSpace = 30000000 - usedSpace;
+    const usedSpace = 70_000_000 - rootDirectory.size;
+    const neededSpace = 30_000_000 - usedSpace;
 
     const candidates = directories
         .filter((directory) => directory.size >= neededSpace)
@@ -111,11 +111,11 @@ async function main() {
     const data = await getInput(__dirname);
     const testData = await getExampleInput(__dirname);
 
-    strictEqual(getSize(testData), 95437);
+    strictEqual(getSize(testData), 95_437);
 
     console.log('Part 1', part1(data));
 
-    strictEqual(getSizeOfDeletedDirectory(testData), 24933642);
+    strictEqual(getSizeOfDeletedDirectory(testData), 24_933_642);
 
     console.log('Part 2', part2(data));
 }

@@ -2,13 +2,13 @@ import { strictEqual } from 'assert';
 import { getExampleInput, getInput } from '../utils';
 
 function getRange(from: number, to: number): number[] {
-    const arr: number[] = [];
+    const array: number[] = [];
 
-    for (let i = from; i <= to; i += 1) {
-        arr.push(i);
+    for (let index = from; index <= to; index += 1) {
+        array.push(index);
     }
 
-    return arr;
+    return array;
 }
 
 function getOverlappingAssigmentCount(data: string[], any = false): number {

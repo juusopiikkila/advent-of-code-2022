@@ -2,12 +2,12 @@ import { strictEqual } from 'assert';
 import { getExampleInput, getInput } from '../utils';
 
 function getCaloriesByElf(data: string[]): number[] {
-    const arr: number[] = [];
+    const array: number[] = [];
     let currentCount = 0;
 
     for (const row of data) {
         if (row.length === 0) {
-            arr.push(currentCount);
+            array.push(currentCount);
 
             currentCount = 0;
         } else {
@@ -15,9 +15,9 @@ function getCaloriesByElf(data: string[]): number[] {
         }
     }
 
-    arr.push(currentCount);
+    array.push(currentCount);
 
-    return arr;
+    return array;
 }
 
 function getLargestCaloryElfNumber(data: string[]): number {
@@ -50,7 +50,7 @@ async function main() {
 
     console.log('Part 1', part1(data));
 
-    strictEqual(getTopElfsTotal(testData), 45000);
+    strictEqual(getTopElfsTotal(testData), 45_000);
 
     console.log('Part 2', part2(data));
 }

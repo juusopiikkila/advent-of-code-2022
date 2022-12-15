@@ -70,17 +70,28 @@ function getScoreWithOutcomes(data: string[]): number {
 
         let elfItem: Item | undefined;
 
-        if (outcome === 'X') {
-            // lose
-            elfItem = items.find((item) => item.name !== opponentItem.name && item.name !== opponentItem.answer);
-        } else if (outcome === 'Y') {
-            // draw
-            elfItem = opponentItem;
-            score += 3;
-        } else if (outcome === 'Z') {
-            // win
-            elfItem = items.find((item) => item.name === opponentItem.answer);
-            score += 6;
+        switch (outcome) {
+            case 'X': {
+                // lose
+                elfItem = items.find((item) => item.name !== opponentItem.name && item.name !== opponentItem.answer);
+
+                break;
+            }
+            case 'Y': {
+                // draw
+                elfItem = opponentItem;
+                score += 3;
+
+                break;
+            }
+            case 'Z': {
+                // win
+                elfItem = items.find((item) => item.name === opponentItem.answer);
+                score += 6;
+
+                break;
+            }
+            default:
         }
 
         if (!elfItem) {

@@ -30,13 +30,9 @@ export function generateMap<T = string | number>(
     height: number,
     fill: T,
 ): T[][] {
-    const map = new Array(height);
-
-    for (let i = 0; i < height; i += 1) {
-        map[i] = Array(width).fill(fill);
-    }
-
-    return map;
+    return Array
+        .from<T[]>({ length: height })
+        .map(() => Array.from<T>({ length: width }).fill(fill));
 }
 
 export async function findPath(map: number[][], from: Coord, to: Coord, options: PathOptions): Promise<Coord[]> {

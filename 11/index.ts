@@ -84,13 +84,13 @@ class Troop {
             .map((group) => group.slice(0, 6));
 
         this.monkeys = groups.map((group) => {
-            const number = Number(group[0].match(/^Monkey ([0-9]+):$/)?.[1]);
+            const number = Number(group[0].match(/^Monkey (\d+):$/)?.[1]);
 
             const items = group[1].split(':')[1]
                 .split(',')
                 .map((item) => BigNumber(item.trim()));
 
-            const operationData = [...group[2].trim().matchAll(/^Operation: new = old (.*) ([0-9]+|old)$/g)];
+            const operationData = [...group[2].trim().matchAll(/^Operation: new = old (.*) (\d+|old)$/g)];
 
             const operation = operationData[0][1] === '*' ? 'multiply' : 'add';
             const operationNumber = operationData[0][2] === 'old' ? undefined : Number(operationData[0][2]);
@@ -115,7 +115,7 @@ class Troop {
     }
 
     getInspectedItemCount(rounds = 20): number {
-        for (let i = 0; i < rounds; i += 1) {
+        for (let index = 0; index < rounds; index += 1) {
             for (const monkey of this.monkeys) {
                 monkey.inspectItems();
             }
@@ -136,18 +136,18 @@ function part1(data: string[]): number {
 }
 
 function part2(data: string[]): number {
-    return (new Troop(data, true)).getInspectedItemCount(10000);
+    return (new Troop(data, true)).getInspectedItemCount(10_000);
 }
 
 async function main() {
     const data = await getInput(__dirname);
     const testData = await getExampleInput(__dirname);
 
-    strictEqual((new Troop(testData)).getInspectedItemCount(), 10605);
+    strictEqual((new Troop(testData)).getInspectedItemCount(), 10_605);
 
     console.log('Part 1', part1(data));
 
-    strictEqual((new Troop(testData, true)).getInspectedItemCount(10000), 2713310158);
+    strictEqual((new Troop(testData, true)).getInspectedItemCount(10_000), 2_713_310_158);
 
     console.log('Part 2', part2(data));
 }

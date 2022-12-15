@@ -153,8 +153,8 @@ async function main() {
     const testData = await getExampleInput(__dirname);
     const testData2 = await getExampleInput(__dirname, 2);
 
-    strictEqual((new CPU(testData)).getSignalStrength(), -41440);
-    strictEqual((new CPU(testData2)).getSignalStrength(), 13140);
+    strictEqual((new CPU(testData)).getSignalStrength(), -41_440);
+    strictEqual((new CPU(testData2)).getSignalStrength(), 13_140);
 
     console.log('Part 1', part1(data));
 
