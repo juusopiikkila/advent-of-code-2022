@@ -176,6 +176,7 @@ class Map {
     getNonBeaconPositions(y: number) {
         let [min, max] = this.getXBoundaries();
 
+        // eslint-disable-next-line no-constant-condition
         while (true) {
             // eslint-disable-next-line @typescript-eslint/no-loop-func
             if (!this.sensors.some((sensor) => sensor.isCovered({
@@ -188,6 +189,7 @@ class Map {
             min -= 1;
         }
 
+        // eslint-disable-next-line no-constant-condition
         while (true) {
             // eslint-disable-next-line @typescript-eslint/no-loop-func
             if (!this.sensors.some((sensor) => sensor.isCovered({
