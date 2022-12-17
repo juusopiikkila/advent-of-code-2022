@@ -59,3 +59,13 @@ export async function findPath(map: number[][], from: Coord, to: Coord, options:
         easystar.calculate();
     });
 }
+
+export function getManhattanDistance(a: [number, number], b: [number, number]): number {
+    let distance = 0;
+
+    for (let index = 0; index < 2; index += 1) {
+        distance += Math.abs((b[index] || 0) - (a[index] || 0));
+    }
+
+    return distance;
+}
